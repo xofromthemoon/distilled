@@ -620,7 +620,14 @@
         "concurrency": {
           "target": "smithy.api#Integer",
           "traits": {
+            "smithy.api#documentation": "Maximum number of in-flight requests to a single instance",
             "smithy.api#required": {}
+          }
+        },
+        "max_scale": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of running instances"
           }
         },
         "plan": {
@@ -731,7 +738,7 @@
         "smithy.api#documentation": "Lists all revisions."
       }
     },
-    "com.stackit.functions#CreateFunctionRevisionRequestLabelsMap": {
+    "com.stackit.functions#CreateRevisionRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -741,7 +748,7 @@
       },
       "traits": {}
     },
-    "com.stackit.functions#CreateFunctionRevisionRequestState": {
+    "com.stackit.functions#CreateRevisionRequestState": {
       "type": "enum",
       "members": {
         "CANCELLED": {
@@ -773,7 +780,7 @@
         "smithy.api#documentation": "Status of this revision."
       }
     },
-    "com.stackit.functions#CreateFunctionRevisionRequestVariablesList": {
+    "com.stackit.functions#CreateRevisionRequestVariablesList": {
       "type": "list",
       "member": {
         "target": "com.stackit.functions#RevisionVariable"
@@ -782,7 +789,7 @@
         "smithy.api#documentation": "Variable values for this revision. Each variable must reference a variable definition on the function."
       }
     },
-    "com.stackit.functions#CreateFunctionRevisionRequest": {
+    "com.stackit.functions#CreateRevisionRequest": {
       "type": "structure",
       "members": {
         "projectId": {
@@ -826,7 +833,7 @@
           }
         },
         "labels": {
-          "target": "com.stackit.functions#CreateFunctionRevisionRequestLabelsMap"
+          "target": "com.stackit.functions#CreateRevisionRequestLabelsMap"
         },
         "limits": {
           "target": "com.stackit.functions#ResourceLimits",
@@ -860,7 +867,7 @@
           }
         },
         "state": {
-          "target": "com.stackit.functions#CreateFunctionRevisionRequestState",
+          "target": "com.stackit.functions#CreateRevisionRequestState",
           "traits": {
             "smithy.api#documentation": "Status of this revision."
           }
@@ -878,7 +885,7 @@
           }
         },
         "variables": {
-          "target": "com.stackit.functions#CreateFunctionRevisionRequestVariablesList",
+          "target": "com.stackit.functions#CreateRevisionRequestVariablesList",
           "traits": {
             "smithy.api#documentation": "Variable values for this revision. Each variable must reference a variable definition on the function."
           }
@@ -894,10 +901,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stackit.functions#CreateFunctionRevision": {
+    "com.stackit.functions#CreateRevision": {
       "type": "operation",
       "input": {
-        "target": "com.stackit.functions#CreateFunctionRevisionRequest"
+        "target": "com.stackit.functions#CreateRevisionRequest"
       },
       "output": {
         "target": "com.stackit.functions#Revision"
@@ -1463,7 +1470,7 @@
           "target": "com.stackit.functions#ListRevisions2"
         },
         {
-          "target": "com.stackit.functions#CreateFunctionRevision"
+          "target": "com.stackit.functions#CreateRevision"
         },
         {
           "target": "com.stackit.functions#GetRevision"

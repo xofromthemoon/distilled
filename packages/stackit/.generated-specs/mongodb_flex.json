@@ -684,6 +684,21 @@
       },
       "traits": {}
     },
+    "com.stackit.mongodb_flex#StorageUpdate": {
+      "type": "structure",
+      "members": {
+        "class": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED: Starting November 2026, the API will reject requests that attempt to modify the storage class."
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
     "com.stackit.mongodb_flex#UpdateInstanceRequest": {
       "type": "structure",
       "members": {
@@ -754,7 +769,7 @@
           }
         },
         "storage": {
-          "target": "com.stackit.mongodb_flex#Storage",
+          "target": "com.stackit.mongodb_flex#StorageUpdate",
           "traits": {
             "smithy.api#required": {}
           }
@@ -900,7 +915,7 @@
           "target": "smithy.api#Integer"
         },
         "storage": {
-          "target": "com.stackit.mongodb_flex#Storage"
+          "target": "com.stackit.mongodb_flex#StorageUpdate"
         },
         "version": {
           "target": "smithy.api#String"

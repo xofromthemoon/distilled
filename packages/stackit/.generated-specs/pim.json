@@ -1062,11 +1062,25 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "chargeDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Charge description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "cpuOverprovisioning": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "CPU overprovisioning",
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "denominator": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Conversion of the quantity value from the quantity input unit to the invoice unit.",
+            "smithy.api#required": {}
           }
         },
         "deprecated": {
@@ -1091,12 +1105,33 @@
             "smithy.api#required": {}
           }
         },
+        "focusConsumedUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit displayed in the Focus Report.",
+            "smithy.api#required": {}
+          }
+        },
+        "focusDocumentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The documentation in the Focus Report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "generalProductGroup": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hourlyAggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day)",
+            "smithy.api#required": {}
           }
         },
         "id": {
@@ -1125,6 +1160,13 @@
             "smithy.api#documentation": "State of the SKU following the mandatory product‘s maturity model progress (e.g. `beta`, `ga`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meteringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous).",
+            "smithy.api#required": {}
           }
         },
         "metric": {
@@ -1171,6 +1213,13 @@
             "smithy.api#documentation": "Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quantityInputUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit sent in the quantity field of the Consumption API and Metering API.",
+            "smithy.api#required": {}
           }
         },
         "rateType": {
@@ -1292,6 +1341,13 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Monthly price value that is valid at request time, shown with full precision",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "priceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price ID",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -2563,6 +2619,12 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "denominator": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Conversion of the quantity value from the quantity input unit to the invoice unit."
+          }
+        },
         "deprecated": {
           "target": "smithy.api#String",
           "traits": {
@@ -2644,6 +2706,19 @@
             "smithy.api#documentation": "Flavor"
           }
         },
+        "focusConsumedUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit displayed in the Focus Report."
+          }
+        },
+        "focusDocumentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The documentation in the Focus Report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "generalProductGroup": {
           "target": "smithy.api#String",
           "traits": {
@@ -2654,6 +2729,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Hardware"
+          }
+        },
+        "hourlyAggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day)"
           }
         },
         "initialRuntimeInMonths": {
@@ -2693,6 +2774,12 @@
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Storage maxTroughInMB"
+          }
+        },
+        "meteringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous)."
           }
         },
         "metricPerMin": {
@@ -2748,6 +2835,12 @@
           "traits": {
             "smithy.api#documentation": "Project notice period in workdays",
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quantityInputUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quantity input unit"
           }
         },
         "ram": {
@@ -3100,11 +3193,25 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "chargeDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Charge description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "cpuOverprovisioning": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "CPU overprovisioning",
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "denominator": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Conversion of the quantity value from the quantity input unit to the invoice unit.",
+            "smithy.api#required": {}
           }
         },
         "deprecated": {
@@ -3129,12 +3236,33 @@
             "smithy.api#required": {}
           }
         },
+        "focusConsumedUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit displayed in the Focus Report.",
+            "smithy.api#required": {}
+          }
+        },
+        "focusDocumentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The documentation in the Focus Report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "generalProductGroup": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hourlyAggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day)",
+            "smithy.api#required": {}
           }
         },
         "id": {
@@ -3163,6 +3291,13 @@
             "smithy.api#documentation": "State of the SKU following the mandatory product‘s maturity model progress (e.g. `beta`, `ga`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meteringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous).",
+            "smithy.api#required": {}
           }
         },
         "metric": {
@@ -3209,6 +3344,13 @@
             "smithy.api#documentation": "Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quantityInputUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit sent in the quantity field of the Consumption API and Metering API.",
+            "smithy.api#required": {}
           }
         },
         "rateType": {
@@ -3586,11 +3728,25 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "chargeDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Charge description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "cpuOverprovisioning": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "CPU overprovisioning",
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "denominator": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Conversion of the quantity value from the quantity input unit to the invoice unit.",
+            "smithy.api#required": {}
           }
         },
         "deprecated": {
@@ -3615,12 +3771,33 @@
             "smithy.api#required": {}
           }
         },
+        "focusConsumedUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit displayed in the Focus Report.",
+            "smithy.api#required": {}
+          }
+        },
+        "focusDocumentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The documentation in the Focus Report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "generalProductGroup": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hourlyAggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day)",
+            "smithy.api#required": {}
           }
         },
         "id": {
@@ -3649,6 +3826,13 @@
             "smithy.api#documentation": "State of the SKU following the mandatory product‘s maturity model progress (e.g. `beta`, `ga`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meteringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous).",
+            "smithy.api#required": {}
           }
         },
         "metric": {
@@ -3695,6 +3879,13 @@
             "smithy.api#documentation": "Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`)",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quantityInputUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit sent in the quantity field of the Consumption API and Metering API.",
+            "smithy.api#required": {}
           }
         },
         "rateType": {

@@ -126,6 +126,12 @@
             "smithy.api#documentation": "The Logs instance's ingest logs URL"
           }
         },
+        "labels": {
+          "target": "com.stackit.logs#LogsInstanceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key-value pairs."
+          }
+        },
         "queryRangeUrl": {
           "target": "smithy.api#String",
           "traits": {
@@ -162,6 +168,18 @@
       },
       "traits": {
         "smithy.api#documentation": "The access control list for the Logs instance."
+      }
+    },
+    "com.stackit.logs#LogsInstanceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels as key-value pairs."
       }
     },
     "com.stackit.logs#LogsInstanceStatus": {
@@ -247,6 +265,18 @@
         "smithy.api#documentation": "The access control list for the Logs instance."
       }
     },
+    "com.stackit.logs#CreateLogsInstanceRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#CreateLogsInstanceRequest": {
       "type": "structure",
       "members": {
@@ -283,6 +313,12 @@
           "traits": {
             "smithy.api#documentation": "The displayed name to distinguish multiple Logs instances.",
             "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#CreateLogsInstanceRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
           }
         },
         "retentionDays": {
@@ -429,6 +465,18 @@
         "smithy.api#documentation": "The access control list for the Logs instance."
       }
     },
+    "com.stackit.logs#UpdateLogsInstanceRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#UpdateLogsInstanceRequest": {
       "type": "structure",
       "members": {
@@ -472,6 +520,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The displayed name to distinguish multiple Logs instances."
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#UpdateLogsInstanceRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
           }
         },
         "retentionDays": {
@@ -678,6 +732,12 @@
             "smithy.api#required": {}
           }
         },
+        "labels": {
+          "target": "com.stackit.logs#AccessPolicyLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key-value pairs."
+          }
+        },
         "permissions": {
           "target": "com.stackit.logs#Permissions",
           "traits": {
@@ -686,6 +746,18 @@
         }
       },
       "traits": {}
+    },
+    "com.stackit.logs#AccessPolicyLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels as key-value pairs."
+      }
     },
     "com.stackit.logs#Permissions": {
       "type": "list",
@@ -768,6 +840,18 @@
       },
       "traits": {}
     },
+    "com.stackit.logs#CreateAccessPolicyRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#CreateAccessPolicyRequest": {
       "type": "structure",
       "members": {
@@ -807,6 +891,13 @@
           "traits": {
             "smithy.api#documentation": "The email address of the STACKIT IAM subject (user, group, or service account).",
             "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#CreateAccessPolicyRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n",
+            "com.distilled.openapi#nullable": {}
           }
         },
         "permissions": {
@@ -1033,6 +1124,18 @@
       },
       "traits": {}
     },
+    "com.stackit.logs#UpdateAccessPolicyRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#UpdateAccessPolicyRequest": {
       "type": "structure",
       "members": {
@@ -1072,6 +1175,13 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The updated description of the access policy. If not present will be ignored in update.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#UpdateAccessPolicyRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -1305,6 +1415,12 @@
             "smithy.api#required": {}
           }
         },
+        "labels": {
+          "target": "com.stackit.logs#AccessTokenLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key-value pairs."
+          }
+        },
         "permissions": {
           "target": "com.stackit.logs#Permissions",
           "traits": {
@@ -1325,6 +1441,18 @@
         }
       },
       "traits": {}
+    },
+    "com.stackit.logs#AccessTokenLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels as key-value pairs."
+      }
     },
     "com.stackit.logs#AccessTokenStatus": {
       "type": "enum",
@@ -1398,6 +1526,18 @@
       },
       "traits": {}
     },
+    "com.stackit.logs#CreateAccessTokenRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#CreateAccessTokenRequest": {
       "type": "structure",
       "members": {
@@ -1436,6 +1576,12 @@
           "traits": {
             "smithy.api#documentation": "The displayed name of the access token.",
             "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#CreateAccessTokenRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
           }
         },
         "lifetime": {
@@ -1747,6 +1893,18 @@
       },
       "traits": {}
     },
+    "com.stackit.logs#UpdateAccessTokenRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
+      }
+    },
     "com.stackit.logs#UpdateAccessTokenRequest": {
       "type": "structure",
       "members": {
@@ -1792,6 +1950,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The displayed name of the access token."
+          }
+        },
+        "labels": {
+          "target": "com.stackit.logs#UpdateAccessTokenRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs for resource labeling. Maximum 64 user labels per resource.\nKey format:\n- May contain an optional domain prefix separated by a slash (/).\n- Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.).\n- Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n- Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users.\nValue format:\n- Length must be <= 63 characters.\n- May be empty.\n- If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between.\n"
           }
         }
       },
@@ -1956,7 +2120,7 @@
     },
     "com.stackit.logs#Logs": {
       "type": "service",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "operations": [
         {
           "target": "com.stackit.logs#ListLogsInstances"

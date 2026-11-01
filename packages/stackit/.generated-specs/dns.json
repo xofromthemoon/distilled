@@ -18,6 +18,491 @@
     "distilled.finalized": true
   },
   "shapes": {
+    "com.stackit.dns#DnslookupRequestRecordType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "SOA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOA"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        },
+        "NS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NS"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "SRV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SRV"
+          }
+        },
+        "PTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PTR"
+          }
+        },
+        "ALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALIAS"
+          }
+        },
+        "DNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNAME"
+          }
+        },
+        "CAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAA"
+          }
+        },
+        "DNSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNSKEY"
+          }
+        },
+        "DS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DS"
+          }
+        },
+        "LOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOC"
+          }
+        },
+        "NAPTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAPTR"
+          }
+        },
+        "SSHFP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSHFP"
+          }
+        },
+        "TLSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLSA"
+          }
+        },
+        "URI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URI"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        },
+        "SVCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SVCB"
+          }
+        },
+        "TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE"
+          }
+        },
+        "CSYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSYNC"
+          }
+        },
+        "HINFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HINFO"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HTTPS"
+          }
+        },
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RecordType specifies the DNS record type to query (A, AAAA, MX, etc.)\nIf omitted, defaults to ANY records"
+      }
+    },
+    "com.stackit.dns#DnslookupRequestType": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "ONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "one"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type specifies whether to query all configured resolvers or just one\n\"one\" - query a single resolver chosen by round-robin (default)\n\"all\" - query all configured resolvers"
+      }
+    },
+    "com.stackit.dns#DnslookupRequest": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Address is the domain name to look up"
+          }
+        },
+        "includeRawResponse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "IncludeRawResponse indicates whether to include the raw DNS response in the result"
+          }
+        },
+        "recordType": {
+          "target": "com.stackit.dns#DnslookupRequestRecordType",
+          "traits": {
+            "smithy.api#documentation": "RecordType specifies the DNS record type to query (A, AAAA, MX, etc.)\nIf omitted, defaults to ANY records"
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region optionally specifies a STACKIT region to scope the DNS lookup"
+          }
+        },
+        "type": {
+          "target": "com.stackit.dns#DnslookupRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type specifies whether to query all configured resolvers or just one\n\"one\" - query a single resolver chosen by round-robin (default)\n\"all\" - query all configured resolvers"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.dns#DnslookupLookupResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "com.stackit.dns#DnslookupLookupResponseStateList"
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#DnslookupModelsLookupResult": {
+      "type": "structure",
+      "members": {
+        "rawResponse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RawResponse contains the raw DNS response in a human-readable format (only included when requested)"
+          }
+        },
+        "records": {
+          "target": "com.stackit.dns#DnslookupModelsLookupResultRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Records contains the DNS records returned by the lookup"
+          }
+        },
+        "resolverIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ResolverIP is the IP address of the DNS resolver used for the query"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#DnslookupModelsLookupRecord": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data contains the record-specific data (e.g., IP address for A records)"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name is the domain name to which this record applies"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "TTL (Time To Live) is the duration in seconds that the record may be cached"
+          }
+        },
+        "type": {
+          "target": "com.stackit.dns#DnslookupModelsLookupRecordType",
+          "traits": {
+            "smithy.api#documentation": "Type is the DNS record type (A, AAAA, MX, etc.)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#DnslookupModelsLookupRecordType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "SOA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOA"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        },
+        "NS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NS"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "SRV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SRV"
+          }
+        },
+        "PTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PTR"
+          }
+        },
+        "ALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALIAS"
+          }
+        },
+        "DNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNAME"
+          }
+        },
+        "CAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAA"
+          }
+        },
+        "DNSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNSKEY"
+          }
+        },
+        "DS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DS"
+          }
+        },
+        "LOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOC"
+          }
+        },
+        "NAPTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAPTR"
+          }
+        },
+        "SSHFP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSHFP"
+          }
+        },
+        "TLSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLSA"
+          }
+        },
+        "URI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URI"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        },
+        "SVCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SVCB"
+          }
+        },
+        "TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE"
+          }
+        },
+        "CSYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSYNC"
+          }
+        },
+        "HINFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HINFO"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HTTPS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type is the DNS record type (A, AAAA, MX, etc.)"
+      }
+    },
+    "com.stackit.dns#DnslookupModelsLookupResultRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.stackit.dns#DnslookupModelsLookupRecord"
+      },
+      "traits": {
+        "smithy.api#documentation": "Records contains the DNS records returned by the lookup"
+      }
+    },
+    "com.stackit.dns#DnslookupLookupResponseStateList": {
+      "type": "list",
+      "member": {
+        "target": "com.stackit.dns#DnslookupModelsLookupResult"
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#Dnslookup": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.dns#DnslookupRequest"
+      },
+      "output": {
+        "target": "com.stackit.dns#DnslookupLookupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.dns#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/dnslookup",
+          "code": 200,
+          "baseUrl": "https://dns.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "DNS Lookup Route\n\nallows the user to lookup a domain on the STACKIT DNS Resolvers"
+      }
+    },
     "com.stackit.dns#MoveZoneRequest": {
       "type": "structure",
       "members": {
@@ -489,7 +974,7 @@
           "target": "com.stackit.dns#ListZonesRequestStateEq",
           "traits": {
             "smithy.api#httpQuery": "state[eq]",
-            "smithy.api#documentation": "filter state"
+            "smithy.api#documentation": "filter state (DELETE_SUCCEEDED is excluded by default)"
           }
         },
         "state_neq_": {
@@ -1158,7 +1643,7 @@
           "code": 200,
           "baseUrl": "https://dns.api.stackit.cloud"
         },
-        "smithy.api#documentation": "All get selected zones\n\nAll zone",
+        "smithy.api#documentation": "All get selected zones\n\nRetrieve all zones. By default, zones in the 'DELETE_SUCCEEDED' state are excluded. To retrieve them, explicitly specify 'state[eq]=DELETE_SUCCEEDED' in the query parameters.",
         "smithy.api#paginated": {
           "mode": "page",
           "inputToken": "page",
@@ -1505,7 +1990,7 @@
           }
         },
         "extensions": {
-          "target": "com.stackit.dns#ZoneExtensions",
+          "target": "com.stackit.dns#DomainExtensions",
           "traits": {
             "smithy.api#documentation": "optional extensions"
           }
@@ -2786,7 +3271,7 @@
           "target": "com.stackit.dns#ListRecordSetsRequestStateEq",
           "traits": {
             "smithy.api#httpQuery": "state[eq]",
-            "smithy.api#documentation": "filter state"
+            "smithy.api#documentation": "filter state (DELETE_SUCCEEDED is excluded by default)"
           }
         },
         "state_neq_": {
@@ -3388,7 +3873,7 @@
           "code": 200,
           "baseUrl": "https://dns.api.stackit.cloud"
         },
-        "smithy.api#documentation": "All get selected RRSets\n\nAll RRSet",
+        "smithy.api#documentation": "All get selected RRSets\n\nRetrieve all RRSets. By default, records in the 'DELETE_SUCCEEDED' state are excluded. To retrieve them, explicitly specify 'state[eq]=DELETE_SUCCEEDED' in the query parameters.",
         "smithy.api#paginated": {
           "mode": "page",
           "inputToken": "page",
@@ -4046,6 +4531,199 @@
         "smithy.api#documentation": "Restore record set\n\nRestore record set"
       }
     },
+    "com.stackit.dns#FlushRequestType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "SOA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOA"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        },
+        "NS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NS"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "SRV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SRV"
+          }
+        },
+        "PTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PTR"
+          }
+        },
+        "DNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNAME"
+          }
+        },
+        "CAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAA"
+          }
+        },
+        "DNSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNSKEY"
+          }
+        },
+        "DS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DS"
+          }
+        },
+        "LOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOC"
+          }
+        },
+        "NAPTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAPTR"
+          }
+        },
+        "SSHFP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSHFP"
+          }
+        },
+        "TLSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLSA"
+          }
+        },
+        "URI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URI"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        },
+        "SVCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SVCB"
+          }
+        },
+        "CSYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSYNC"
+          }
+        },
+        "HINFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HINFO"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HTTPS"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#FlushRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.stackit.dns#FlushRequestType"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.dns#FlushCreateFlushResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.dns#Flush": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.dns#FlushRequest"
+      },
+      "output": {
+        "target": "com.stackit.dns#FlushCreateFlushResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.dns#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/resolver/flush",
+          "code": 200,
+          "baseUrl": "https://dns.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "Flush Route\n\nallows the user to flush the cache for a domain on the STACKIT DNS Resolvers"
+      }
+    },
     "com.stackit.dns#BadRequest": {
       "type": "structure",
       "members": {},
@@ -4102,6 +4780,9 @@
       "type": "service",
       "version": "1.0",
       "operations": [
+        {
+          "target": "com.stackit.dns#Dnslookup"
+        },
         {
           "target": "com.stackit.dns#MoveZone"
         },
@@ -4164,6 +4845,9 @@
         },
         {
           "target": "com.stackit.dns#RestoreRecordSet"
+        },
+        {
+          "target": "com.stackit.dns#Flush"
         }
       ],
       "traits": {

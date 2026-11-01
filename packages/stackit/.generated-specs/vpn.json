@@ -3937,6 +3937,12 @@
             "smithy.api#documentation": "The negotiated integrity algorithm or pseudo-random-function."
           }
         },
+        "localTS": {
+          "target": "com.stackit.vpn#Phase2StatusLocalTSList",
+          "traits": {
+            "smithy.api#documentation": "List of negotiated local traffic selectors."
+          }
+        },
         "packetsIn": {
           "target": "smithy.api#String",
           "traits": {
@@ -3955,11 +3961,35 @@
             "smithy.api#documentation": "The security protocol used for the tunnel, typically `ESP` (Encapsulating Security Payload)."
           }
         },
+        "remoteTS": {
+          "target": "com.stackit.vpn#Phase2StatusRemoteTSList",
+          "traits": {
+            "smithy.api#documentation": "List of negotiated remote traffic selectors."
+          }
+        },
         "state": {
           "target": "smithy.api#String"
         }
       },
       "traits": {}
+    },
+    "com.stackit.vpn#Phase2StatusLocalTSList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of negotiated local traffic selectors."
+      }
+    },
+    "com.stackit.vpn#Phase2StatusRemoteTSList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of negotiated remote traffic selectors."
+      }
     },
     "com.stackit.vpn#ConnectionStatusResponseTunnelsList": {
       "type": "list",

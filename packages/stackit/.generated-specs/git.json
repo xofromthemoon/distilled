@@ -1237,6 +1237,12 @@
             "smithy.api#required": {}
           }
         },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner's job family name."
+          }
+        },
         "id": {
           "target": "smithy.api#String",
           "traits": {
@@ -1318,6 +1324,12 @@
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
             "smithy.api#documentation": "Instance identifier."
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner's job family name."
           }
         },
         "labels": {
@@ -1822,6 +1834,126 @@
         "smithy.api#documentation": "Delete Instance User.\n\nDeletes a STACKIT Git instance User and destroys all associated data."
       }
     },
+    "com.stackit.git#ListRunnerFamiliesRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.git#RunnerFamilyList": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.stackit.git#RunnerFamilyListItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of STACKIT Git RunnerFamily."
+      }
+    },
+    "com.stackit.git#RunnerFamily": {
+      "type": "structure",
+      "members": {
+        "arch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the runner image architecture.",
+            "smithy.api#required": {}
+          }
+        },
+        "availability": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the availability of the runner label",
+            "smithy.api#required": {}
+          }
+        },
+        "cpu": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CPU virtual cores resource limit of jobs.",
+            "smithy.api#required": {}
+          }
+        },
+        "disk": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk size limit of jobs.",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-friendly name of the runtime.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Family name identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "ram": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RAM resource limit of jobs.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a STACKIT Git Runner Family."
+      }
+    },
+    "com.stackit.git#RunnerFamilyListItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.stackit.git#RunnerFamily"
+      },
+      "traits": {}
+    },
+    "com.stackit.git#ListRunnerFamilies": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.git#ListRunnerFamiliesRequest"
+      },
+      "output": {
+        "target": "com.stackit.git#RunnerFamilyList"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.git#BadRequest"
+        },
+        {
+          "target": "com.stackit.git#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1beta/projects/{projectId}/runner-families",
+          "code": 200,
+          "baseUrl": "https://git.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "A list of runner job families that are available for the project."
+      }
+    },
     "com.stackit.git#ListRunnerRuntimesRequest": {
       "type": "structure",
       "members": {
@@ -1855,6 +1987,13 @@
     "com.stackit.git#RunnerRuntime": {
       "type": "structure",
       "members": {
+        "arch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the runner image architecture.",
+            "smithy.api#required": {}
+          }
+        },
         "availability": {
           "target": "smithy.api#String",
           "traits": {
@@ -1865,7 +2004,7 @@
         "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Human-friendly description of the runtime and its capabilities.",
+            "smithy.api#documentation": "Human-friendly description of the runtime and it's capabilities.",
             "smithy.api#required": {}
           }
         },
@@ -2027,6 +2166,9 @@
         },
         {
           "target": "com.stackit.git#DeleteUser"
+        },
+        {
+          "target": "com.stackit.git#ListRunnerFamilies"
         },
         {
           "target": "com.stackit.git#ListRunnerRuntimes"

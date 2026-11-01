@@ -218,7 +218,8 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "service parameters"
+        "smithy.api#documentation": "service parameters",
+        "com.distilled.openapi#additionalProperties": {}
       }
     },
     "com.stackit.service_enablement#ParametersGeneralProjectScope": {

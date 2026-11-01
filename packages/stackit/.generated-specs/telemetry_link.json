@@ -111,6 +111,12 @@
             "smithy.api#required": {}
           }
         },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#TelemetryLinkResponseResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+          }
+        },
         "status": {
           "target": "com.stackit.telemetry_link#TelemetryLinkResponseStatus",
           "traits": {
@@ -146,6 +152,18 @@
       },
       "traits": {
         "smithy.api#documentation": "The STACKIT region name the resource is located in."
+      }
+    },
+    "com.stackit.telemetry_link#TelemetryLinkResponseResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
       }
     },
     "com.stackit.telemetry_link#TelemetryLinkResponseStatus": {
@@ -230,6 +248,18 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#CreateOrUpdateFolderTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#CreateOrUpdateFolderTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -281,6 +311,12 @@
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data.",
             "smithy.api#required": {}
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#CreateOrUpdateFolderTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -335,6 +371,21 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#PartialUpdateFolderTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "com.distilled.openapi#nullable": {}
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#PartialUpdateFolderTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -383,6 +434,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data."
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#PartialUpdateFolderTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -583,8 +640,7 @@
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource."
           }
         },
         "id": {
@@ -745,8 +801,7 @@
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource."
           }
         }
       },
@@ -942,6 +997,18 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#CreateOrUpdateOrganizationTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#CreateOrUpdateOrganizationTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -993,6 +1060,12 @@
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data.",
             "smithy.api#required": {}
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#CreateOrUpdateOrganizationTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -1047,6 +1120,21 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#PartialUpdateOrganizationTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "com.distilled.openapi#nullable": {}
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#PartialUpdateOrganizationTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -1095,6 +1183,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data."
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#PartialUpdateOrganizationTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -1327,8 +1421,7 @@
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource."
           }
         }
       },
@@ -1524,6 +1617,18 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#CreateOrUpdateProjectTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#CreateOrUpdateProjectTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -1575,6 +1680,12 @@
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data.",
             "smithy.api#required": {}
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#CreateOrUpdateProjectTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -1629,6 +1740,21 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_link#PartialUpdateProjectTelemetryLinkRequestResourceLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "com.distilled.openapi#nullable": {}
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
+      }
+    },
     "com.stackit.telemetry_link#PartialUpdateProjectTelemetryLinkRequest": {
       "type": "structure",
       "members": {
@@ -1677,6 +1803,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The ID of the telemetry-router to route the telemetry data."
+          }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_link#PartialUpdateProjectTelemetryLinkRequestResourceLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)"
           }
         }
       },
@@ -1909,8 +2041,7 @@
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource."
           }
         }
       },

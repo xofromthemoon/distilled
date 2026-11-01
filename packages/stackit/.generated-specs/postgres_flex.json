@@ -264,7 +264,7 @@
         "target": "com.stackit.postgres_flex#FlavorStorageClassesStorageClass"
       },
       "traits": {
-        "smithy.api#documentation": "maximum storage which can be ordered for the flavor in Gigabyte."
+        "smithy.api#documentation": "The storage classes available for the flavor."
       }
     },
     "com.stackit.postgres_flex#FlavorStorageClassesStorageClass": {
@@ -506,6 +506,12 @@
     "com.stackit.postgres_flex#ListInstance": {
       "type": "structure",
       "members": {
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "flavorId": {
+          "target": "smithy.api#String"
+        },
         "id": {
           "target": "smithy.api#String",
           "traits": {
@@ -529,6 +535,12 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "storage": {
+          "target": "com.stackit.postgres_flex#Storage"
+        },
+        "version": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {}
@@ -575,6 +587,20 @@
       },
       "traits": {
         "smithy.api#documentation": "The current state of the instance."
+      }
+    },
+    "com.stackit.postgres_flex#Storage": {
+      "type": "structure",
+      "members": {
+        "class": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object containing information about the storage size and class."
       }
     },
     "com.stackit.postgres_flex#ListInstancesResponseInstancesList": {
@@ -726,7 +752,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "List of IPV4 cidr."
+        "smithy.api#documentation": "List of IPv4 CIDR addresses."
       }
     },
     "com.stackit.postgres_flex#StorageCreate": {
@@ -1054,20 +1080,6 @@
         "smithy.api#documentation": "The access configuration of the instance"
       }
     },
-    "com.stackit.postgres_flex#Storage": {
-      "type": "structure",
-      "members": {
-        "class": {
-          "target": "smithy.api#String"
-        },
-        "size": {
-          "target": "smithy.api#Integer"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The object containing information about the storage size and class."
-      }
-    },
     "com.stackit.postgres_flex#GetInstance": {
       "type": "operation",
       "input": {
@@ -1285,7 +1297,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "List of IPV4 cidr."
+        "smithy.api#documentation": "List of IPv4 CIDR addresses."
       }
     },
     "com.stackit.postgres_flex#PartialUpdateInstanceRequest": {
@@ -1700,7 +1712,7 @@
           "code": 200,
           "baseUrl": "https://postgres-flex-service.api.stackit.cloud"
         },
-        "smithy.api#documentation": "List backups\n\nList all backups which are available for a specific instance."
+        "smithy.api#documentation": "List Backups\n\nList all backups which are available for a specific instance."
       }
     },
     "com.stackit.postgres_flex#GetBackupRequestRegion": {
@@ -2717,6 +2729,9 @@
         },
         {
           "target": "com.stackit.postgres_flex#NotFound"
+        },
+        {
+          "target": "com.stackit.postgres_flex#Conflict"
         }
       ],
       "traits": {
@@ -3602,7 +3617,7 @@
           "code": 200,
           "baseUrl": "https://postgres-flex-service.api.stackit.cloud"
         },
-        "smithy.api#documentation": "Update User Partially\n\nUpdate an user partially for an instance."
+        "smithy.api#documentation": "Update User Partially\n\nUpdate a user partially for an instance."
       }
     },
     "com.stackit.postgres_flex#DeleteUserRequestRegion": {
@@ -3692,7 +3707,7 @@
           "code": 200,
           "baseUrl": "https://postgres-flex-service.api.stackit.cloud"
         },
-        "smithy.api#documentation": "Delete User\n\nDelete an user from a specific instance."
+        "smithy.api#documentation": "Delete User\n\nDelete a user from a specific instance."
       }
     },
     "com.stackit.postgres_flex#ResetUserPasswordRequestRegion": {
@@ -3807,7 +3822,7 @@
           "code": 200,
           "baseUrl": "https://postgres-flex-service.api.stackit.cloud"
         },
-        "smithy.api#documentation": "Reset User\n\nReset an user from an specific instance."
+        "smithy.api#documentation": "Reset User\n\nReset a user from a specific instance."
       }
     },
     "com.stackit.postgres_flex#ListVersionsRequestRegion": {
@@ -3871,21 +3886,21 @@
         "beta": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Flag if the version is a beta version. If set the version may contain bugs and is not fully tested.",
+            "smithy.api#documentation": "Flag indicating whether the version is a beta version. Beta versions may contain bugs and are not fully tested.",
             "smithy.api#required": {}
           }
         },
         "deprecated": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Timestamp in RFC3339 format which says when the version will no longer be supported by STACKIT.",
+            "smithy.api#documentation": "Timestamp in RFC3339 format indicating when the version will no longer be supported by STACKIT.",
             "smithy.api#required": {}
           }
         },
         "recommend": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Flag if the version is recommend by the STACKIT Team.",
+            "smithy.api#documentation": "Flag indicating whether the version is recommended by the STACKIT Team.",
             "smithy.api#required": {}
           }
         },

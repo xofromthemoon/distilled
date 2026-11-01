@@ -90,6 +90,12 @@
         "instanceId": {
           "target": "smithy.api#String"
         },
+        "instanceStatus": {
+          "target": "com.stackit.mariadb#InstanceInstanceStatus",
+          "traits": {
+            "smithy.api#documentation": "Current state of a service instance"
+          }
+        },
         "lastOperation": {
           "target": "com.stackit.mariadb#InstanceLastOperation",
           "traits": {
@@ -133,10 +139,63 @@
           }
         },
         "status": {
-          "target": "com.stackit.mariadb#InstanceStatus"
+          "target": "com.stackit.mariadb#InstanceStatus",
+          "traits": {
+            "smithy.api#documentation": "State of the last operation and this instance"
+          }
         }
       },
       "traits": {}
+    },
+    "com.stackit.mariadb#InstanceInstanceStatus": {
+      "type": "enum",
+      "members": {
+        "PROVISIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provisioned"
+          }
+        },
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deploying"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of a service instance"
+      }
     },
     "com.stackit.mariadb#InstanceLastOperation": {
       "type": "structure",
@@ -250,7 +309,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "State of the last operation and this instance"
+      }
     },
     "com.stackit.mariadb#ListInstancesResponseInstancesList": {
       "type": "list",
@@ -1778,6 +1839,229 @@
         "smithy.api#documentation": "get latest restore information for provided instanceId"
       }
     },
+    "com.stackit.mariadb#GetUpdatesRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.mariadb#GetUpdatesResponse": {
+      "type": "structure",
+      "members": {
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automatic updates are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "availableUpdates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of available update components.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.mariadb#GetUpdates": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.mariadb#GetUpdatesRequest"
+      },
+      "output": {
+        "target": "com.stackit.mariadb#GetUpdatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.mariadb#BadRequest"
+        },
+        {
+          "target": "com.stackit.mariadb#NotFound"
+        },
+        {
+          "target": "com.stackit.mariadb#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates",
+          "code": 200,
+          "baseUrl": "https://mariadb.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "get update settings\n\nReturns whether automatic updates are enabled and the number of available updates."
+      }
+    },
+    "com.stackit.mariadb#UpdateUpdatesSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        },
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable automatic updates or false to disable them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.mariadb#UpdateUpdatesSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automatic updates are allowed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.mariadb#UpdateUpdatesSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.mariadb#UpdateUpdatesSettingsRequest"
+      },
+      "output": {
+        "target": "com.stackit.mariadb#UpdateUpdatesSettingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.mariadb#BadRequest"
+        },
+        {
+          "target": "com.stackit.mariadb#NotFound"
+        },
+        {
+          "target": "com.stackit.mariadb#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates",
+          "code": 200,
+          "baseUrl": "https://mariadb.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "update update settings\n\nEnables or disables automatic updates. The platform operator must allow changing this setting."
+      }
+    },
+    "com.stackit.mariadb#TriggerUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.mariadb#TriggerUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.mariadb#TriggerUpdateRequest"
+      },
+      "output": {
+        "target": "com.stackit.mariadb#CreateInstanceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.mariadb#BadRequest"
+        },
+        {
+          "target": "com.stackit.mariadb#NotFound"
+        },
+        {
+          "target": "com.stackit.mariadb#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates/start",
+          "code": 200,
+          "baseUrl": "https://mariadb.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "start updates\n\nStarts all available updates asynchronously using the instance's service offering. No request body is required."
+      }
+    },
     "com.stackit.mariadb#ListOfferingsRequest": {
       "type": "structure",
       "members": {
@@ -2021,7 +2305,7 @@
     },
     "com.stackit.mariadb#Mariadb": {
       "type": "service",
-      "version": "2.0",
+      "version": "2.1.1",
       "operations": [
         {
           "target": "com.stackit.mariadb#ListInstances"
@@ -2076,6 +2360,15 @@
         },
         {
           "target": "com.stackit.mariadb#ListRestores"
+        },
+        {
+          "target": "com.stackit.mariadb#GetUpdates"
+        },
+        {
+          "target": "com.stackit.mariadb#UpdateUpdatesSettings"
+        },
+        {
+          "target": "com.stackit.mariadb#TriggerUpdate"
         },
         {
           "target": "com.stackit.mariadb#ListOfferings"

@@ -108,7 +108,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.\n\n* **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters.\n* **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.).\n\n> Note: Additional naming restrictions may apply depending on your specific organization.*"
+        "smithy.api#documentation": "Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.\n\n* **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters.\n* **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). Can be set to null to delete the label.\n\n> Note: Additional naming restrictions may apply depending on your specific organization.*"
       }
     },
     "com.stackit.resource_manager#Parent": {
@@ -272,7 +272,7 @@
         "target": "com.stackit.resource_manager#Member"
       },
       "traits": {
-        "smithy.api#documentation": "The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account."
+        "smithy.api#documentation": "The initial members assigned to the folder."
       }
     },
     "com.stackit.resource_manager#CreateFolderRequest": {
@@ -281,7 +281,7 @@
         "containerParentId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier of the parent resource container - containerId as well as UUID identifier is supported.",
+            "smithy.api#documentation": "Identifier of the parent resource container",
             "smithy.api#required": {}
           }
         },
@@ -291,13 +291,13 @@
         "members": {
           "target": "com.stackit.resource_manager#CreateFolderRequestMembersList",
           "traits": {
-            "smithy.api#documentation": "The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account."
+            "smithy.api#documentation": "The initial members assigned to the folder."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the folder matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.",
+            "smithy.api#documentation": "Folder name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`.",
             "smithy.api#required": {}
           }
         }
@@ -571,7 +571,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.\n\nSetting an individual label's value to `null` removes/deletes that label from the resource.\n\n* **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters.\n* **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.).\n\n> Note: Additional naming restrictions may apply depending on your specific organization.*"
+        "smithy.api#documentation": "Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.\n\nSetting an individual label's value to `null` removes/deletes that label from the resource.\n\n* **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters.\n* **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). Can be set to null to delete the label.\n\n> Note: Additional naming restrictions may apply depending on your specific organization.*"
       }
     },
     "com.stackit.resource_manager#PartialUpdateFolderRequest": {
@@ -597,7 +597,7 @@
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`."
+            "smithy.api#documentation": "New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`."
           }
         }
       },
@@ -1084,7 +1084,7 @@
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`."
+            "smithy.api#documentation": "The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`."
           }
         }
       },
@@ -1325,14 +1325,13 @@
         "members": {
           "target": "com.stackit.resource_manager#CreateProjectRequestMembersList",
           "traits": {
-            "smithy.api#documentation": "The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.",
+            "smithy.api#documentation": "Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`.",
             "smithy.api#required": {}
           }
         }
@@ -1553,7 +1552,7 @@
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`."
+            "smithy.api#documentation": "New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`."
           }
         }
       },

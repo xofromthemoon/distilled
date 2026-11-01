@@ -184,7 +184,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "com.distilled.openapi#additionalProperties": {}
+      }
     },
     "com.stackit.automation#CreateVolumeAutomationRequest": {
       "type": "structure",
@@ -322,7 +324,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "com.distilled.openapi#additionalProperties": {}
+      }
     },
     "com.stackit.automation#VolumeOutputStepsList": {
       "type": "list",

@@ -176,6 +176,8 @@ export interface Price {
   currencySymbol?: CurrencySymbols | null;
   /** Monthly price value that is valid at request time, shown with full precision */
   monthlyPrice?: string | null;
+  /** Price ID */
+  priceId?: string | null;
   /** Used in Portal rounded to the minimal usable precision 2 digits after 0 */
   roundedMonthlyPrice?: string;
   /** Used in Portal rounded to the minimal usable precision 2 digits after 0 */
@@ -389,15 +391,25 @@ export interface GetSKUResponse {
   categoryId: string | null;
   /** Generic categorization to structure the customer's invoice transparently (e.g. `Compute Engine`, `Database`, `Storage`) */
   categoryName: string | null;
+  /** Charge description */
+  chargeDescription?: string | null;
   /** CPU overprovisioning */
   cpuOverprovisioning?: boolean | null;
+  /** Conversion of the quantity value from the quantity input unit to the invoice unit. */
+  denominator: number;
   /** Attribute that indicates if product is deprecated or not. */
   deprecated: string | null;
   /** Documentation URL */
   documentation: string | null;
   finOpsFocus: FinOpsFocus;
+  /** The unit displayed in the Focus Report. */
+  focusConsumedUnit: string;
+  /** The documentation in the Focus Report. */
+  focusDocumentation?: string | null;
   /** Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to. */
   generalProductGroup: string | null;
+  /** Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day) */
+  hourlyAggregation: string;
   /** SKU ID \ Complete SAP article number with prefix. Will be shown on the invoice like this */
   id: string;
   /** Language of sku */
@@ -406,6 +418,8 @@ export interface GetSKUResponse {
   licenseName?: string | null;
   /** State of the SKU following the mandatory product's maturity model progress (e.g. `beta`, `ga`) */
   maturityModelState: string | null;
+  /** Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous). */
+  meteringType: string;
   /** Metric of service */
   metric?: string | null;
   /** How the line item will appear on the bill */
@@ -418,6 +432,8 @@ export interface GetSKUResponse {
   productId: string | null;
   /** Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`) */
   productName: string | null;
+  /** The unit sent in the quantity field of the Consumption API and Metering API. */
+  quantityInputUnit: string;
   /** Rate type of service */
   rateType?: string | null;
   /** Region of sku */
@@ -474,15 +490,25 @@ export interface GetSTAXSKUResponse {
   categoryId: string | null;
   /** Generic categorization to structure the customer's invoice transparently (e.g. `Compute Engine`, `Database`, `Storage`) */
   categoryName: string | null;
+  /** Charge description */
+  chargeDescription?: string | null;
   /** CPU overprovisioning */
   cpuOverprovisioning?: boolean | null;
+  /** Conversion of the quantity value from the quantity input unit to the invoice unit. */
+  denominator: number;
   /** Attribute that indicates if product is deprecated or not. */
   deprecated: string | null;
   /** Documentation URL */
   documentation: string | null;
   finOpsFocus: FinOpsFocus;
+  /** The unit displayed in the Focus Report. */
+  focusConsumedUnit: string;
+  /** The documentation in the Focus Report. */
+  focusDocumentation?: string | null;
   /** Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to. */
   generalProductGroup: string | null;
+  /** Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day) */
+  hourlyAggregation: string;
   /** SKU ID \ Complete SAP article number with prefix. Will be shown on the invoice like this */
   id: string;
   /** Language of sku */
@@ -491,6 +517,8 @@ export interface GetSTAXSKUResponse {
   licenseName?: string | null;
   /** State of the SKU following the mandatory product's maturity model progress (e.g. `beta`, `ga`) */
   maturityModelState: string | null;
+  /** Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous). */
+  meteringType: string;
   /** Metric of service */
   metric?: string | null;
   /** How the line item will appear on the bill */
@@ -503,6 +531,8 @@ export interface GetSTAXSKUResponse {
   productId: string | null;
   /** Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`) */
   productName: string | null;
+  /** The unit sent in the quantity field of the Consumption API and Metering API. */
+  quantityInputUnit: string;
   /** Rate type of service */
   rateType?: string | null;
   /** Region of sku */
@@ -642,15 +672,25 @@ export interface PublicSKU {
   categoryId: string | null;
   /** Generic categorization to structure the customer's invoice transparently (e.g. `Compute Engine`, `Database`, `Storage`) */
   categoryName: string | null;
+  /** Charge description */
+  chargeDescription?: string | null;
   /** CPU overprovisioning */
   cpuOverprovisioning?: boolean | null;
+  /** Conversion of the quantity value from the quantity input unit to the invoice unit. */
+  denominator: number;
   /** Attribute that indicates if product is deprecated or not. */
   deprecated: string | null;
   /** Documentation URL */
   documentation: string | null;
   finOpsFocus: FinOpsFocus;
+  /** The unit displayed in the Focus Report. */
+  focusConsumedUnit: string;
+  /** The documentation in the Focus Report. */
+  focusDocumentation?: string | null;
   /** Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to. */
   generalProductGroup: string | null;
+  /** Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day) */
+  hourlyAggregation: string;
   /** SKU ID \ Complete SAP article number with prefix. Will be shown on the invoice like this */
   id: string;
   /** Language of sku */
@@ -659,6 +699,8 @@ export interface PublicSKU {
   licenseName?: string | null;
   /** State of the SKU following the mandatory product's maturity model progress (e.g. `beta`, `ga`) */
   maturityModelState: string | null;
+  /** Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous). */
+  meteringType: string;
   /** Metric of service */
   metric?: string | null;
   /** How the line item will appear on the bill */
@@ -671,6 +713,8 @@ export interface PublicSKU {
   productId: string | null;
   /** Generic product (e.g. `Windows Server`, `Server Backup Management`, `Server`) */
   productName: string | null;
+  /** The unit sent in the quantity field of the Consumption API and Metering API. */
+  quantityInputUnit: string;
   /** Rate type of service */
   rateType?: string | null;
   /** Region of sku */
@@ -786,6 +830,8 @@ export interface SearchSKUsRequest {
   connectionLimitPerLoadBalancer?: number;
   /** Contract notice period in days */
   contractNoticePeriodInDays?: number | null;
+  /** Conversion of the quantity value from the quantity input unit to the invoice unit. */
+  denominator?: number;
   /** Attribute that indicates if product is deprecated or not. */
   deprecated?: string;
   /** diskStoragePerNode */
@@ -810,10 +856,16 @@ export interface SearchSKUsRequest {
   finPenaltySLAVio90_80Pct?: number | null;
   /** Flavor */
   flavor?: string;
+  /** The unit displayed in the Focus Report. */
+  focusConsumedUnit?: string;
+  /** The documentation in the Focus Report. */
+  focusDocumentation?: string | null;
   /** Category designation one level below the generic designation that describes the overall product group to which all the SKUs are allocated to. */
   generalProductGroup?: string;
   /** Hardware */
   hardware?: string;
+  /** Aggregation logic to be applied to the sent events within the metering bucket (currently 1 day) */
+  hourlyAggregation?: string;
   /** Initial runtime in months */
   initialRuntimeInMonths?: number | null;
   /** Lead time in workdays */
@@ -826,6 +878,8 @@ export interface SearchSKUsRequest {
   maxIOPerSec?: number;
   /** Storage maxTroughInMB */
   maxTroughInMB?: number;
+  /** Defines which type of calculation is applied. Either discrete (point-in-time) or continuously (continuous). */
+  meteringType?: string;
   /** metricPerMin */
   metricPerMin?: number;
   /** metro */
@@ -844,6 +898,8 @@ export interface SearchSKUsRequest {
   productName?: string;
   /** Project notice period in workdays */
   projectNoticePeriodInWorkDays?: number | null;
+  /** Quantity input unit */
+  quantityInputUnit?: string;
   /** RAM (in GB) */
   ram?: number;
   /** Reaction time (in minutes) */
@@ -1192,21 +1248,28 @@ function __c3(j: number): any {
         S.Struct({
           categoryId: S.NullOr(S.String),
           categoryName: S.NullOr(S.String),
+          chargeDescription: S.optional(S.NullOr(S.String)),
           cpuOverprovisioning: S.optional(S.NullOr(S.Boolean)),
+          denominator: S.Number,
           deprecated: S.NullOr(S.String),
           documentation: S.NullOr(S.String),
           finOpsFocus: __S(128, __c16, 0),
+          focusConsumedUnit: S.String,
+          focusDocumentation: S.optional(S.NullOr(S.String)),
           generalProductGroup: S.NullOr(S.String),
+          hourlyAggregation: S.String,
           id: S.String,
           language: S.optional(S.String),
           licenseName: S.optional(S.NullOr(S.String)),
           maturityModelState: S.NullOr(S.String),
+          meteringType: S.String,
           metric: S.optional(S.NullOr(S.String)),
           name: S.NullOr(S.String),
           priceListVisibility: S.NullOr(S.String),
           prices: __S(130, __c16, 2),
           productId: S.NullOr(S.String),
           productName: S.NullOr(S.String),
+          quantityInputUnit: S.String,
           rateType: S.optional(S.NullOr(S.String)),
           region: S.String,
           serviceId: S.optional(__S(88, __c11, 0)),
@@ -1314,6 +1377,7 @@ function __c7(j: number): any {
           communicationChannel: S.optional(S.String),
           connectionLimitPerLoadBalancer: S.optional(S.Number),
           contractNoticePeriodInDays: S.optional(S.NullOr(S.Number)),
+          denominator: S.optional(S.Number),
           deprecated: S.optional(S.String),
           diskStoragePerNode: S.optional(S.String),
           documentation: S.optional(S.String),
@@ -1328,14 +1392,18 @@ function __c7(j: number): any {
             S.NullOr(S.Number).pipe(T.Body("finPenaltySLAVio90-80Pct")),
           ),
           flavor: S.optional(S.String),
+          focusConsumedUnit: S.optional(S.String),
+          focusDocumentation: S.optional(S.NullOr(S.String)),
           generalProductGroup: S.optional(S.String),
           hardware: S.optional(S.String),
+          hourlyAggregation: S.optional(S.String),
           initialRuntimeInMonths: S.optional(S.NullOr(S.Number)),
           leadTimeInWorkDays: S.optional(S.NullOr(S.Number)),
           location: S.optional(S.NullOr(S.String)),
           maturityModelState: S.optional(S.String),
           maxIOPerSec: S.optional(S.Number),
           maxTroughInMB: S.optional(S.Number),
+          meteringType: S.optional(S.String),
           metricPerMin: S.optional(S.Number),
           metro: S.optional(S.Boolean),
           monthlyPrice: S.optional(S.String),
@@ -1345,6 +1413,7 @@ function __c7(j: number): any {
           priceListVisibility: S.optional(S.String),
           productName: S.optional(S.String),
           projectNoticePeriodInWorkDays: S.optional(S.NullOr(S.Number)),
+          quantityInputUnit: S.optional(S.String),
           ram: S.optional(S.Number),
           reactionTimeInMins: S.optional(S.NullOr(S.Number)),
           recordLimitPerZone: S.optional(S.Number),
@@ -1548,21 +1617,28 @@ function __c15(j: number): any {
         S.Struct({
           categoryId: S.NullOr(S.String),
           categoryName: S.NullOr(S.String),
+          chargeDescription: S.optional(S.NullOr(S.String)),
           cpuOverprovisioning: S.optional(S.NullOr(S.Boolean)),
+          denominator: S.Number,
           deprecated: S.NullOr(S.String),
           documentation: S.NullOr(S.String),
           finOpsFocus: __S(128, __c16, 0),
+          focusConsumedUnit: S.String,
+          focusDocumentation: S.optional(S.NullOr(S.String)),
           generalProductGroup: S.NullOr(S.String),
+          hourlyAggregation: S.String,
           id: S.String,
           language: S.optional(S.String),
           licenseName: S.optional(S.NullOr(S.String)),
           maturityModelState: S.NullOr(S.String),
+          meteringType: S.String,
           metric: S.optional(S.NullOr(S.String)),
           name: S.NullOr(S.String),
           priceListVisibility: S.NullOr(S.String),
           prices: __S(130, __c16, 2),
           productId: S.NullOr(S.String),
           productName: S.NullOr(S.String),
+          quantityInputUnit: S.String,
           rateType: S.optional(S.NullOr(S.String)),
           region: S.String,
           serviceId: S.optional(__S(88, __c11, 0)),
@@ -1595,6 +1671,7 @@ function __c16(j: number): any {
           currencyCode: S.optional(S.String),
           currencySymbol: S.optional(S.NullOr(S.String)),
           monthlyPrice: S.optional(S.NullOr(S.String)),
+          priceId: S.optional(S.NullOr(S.String)),
           roundedMonthlyPrice: S.optional(S.String),
           roundedValue: S.optional(S.String),
           validFrom: S.optional(S.String),
@@ -1636,21 +1713,28 @@ function __c17(j: number): any {
         S.Struct({
           categoryId: S.NullOr(S.String),
           categoryName: S.NullOr(S.String),
+          chargeDescription: S.optional(S.NullOr(S.String)),
           cpuOverprovisioning: S.optional(S.NullOr(S.Boolean)),
+          denominator: S.Number,
           deprecated: S.NullOr(S.String),
           documentation: S.NullOr(S.String),
           finOpsFocus: __S(128, __c16, 0),
+          focusConsumedUnit: S.String,
+          focusDocumentation: S.optional(S.NullOr(S.String)),
           generalProductGroup: S.NullOr(S.String),
+          hourlyAggregation: S.String,
           id: S.String,
           language: S.optional(S.String),
           licenseName: S.optional(S.NullOr(S.String)),
           maturityModelState: S.NullOr(S.String),
+          meteringType: S.String,
           metric: S.optional(S.NullOr(S.String)),
           name: S.NullOr(S.String),
           priceListVisibility: S.NullOr(S.String),
           prices: __S(130, __c16, 2),
           productId: S.NullOr(S.String),
           productName: S.NullOr(S.String),
+          quantityInputUnit: S.String,
           rateType: S.optional(S.NullOr(S.String)),
           region: S.String,
           serviceId: S.optional(__S(88, __c11, 0)),

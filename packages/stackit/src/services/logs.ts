@@ -41,6 +41,8 @@ export class NotFound
   ) {}
 
 export type CreateAccessPolicyRequestRegionId = "eu01" | "eu02";
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type CreateAccessPolicyRequestLabelsMap = { [key: string]: string | undefined };
 export type PermissionsItem = "read" | "write";
 /** The access permissions granted to the access token or access policy. */
 export type Permissions = Array<PermissionsItem | (string & {})>;
@@ -55,8 +57,12 @@ export interface CreateAccessPolicyRequest {
   description?: string | null;
   /** The email address of the STACKIT IAM subject (user, group, or service account). */
   email: string;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: CreateAccessPolicyRequestLabelsMap | null;
   permissions: Permissions;
 }
+/** Labels as key-value pairs. */
+export type AccessPolicyLabelsMap = { [key: string]: string | undefined };
 export interface AccessPolicy {
   /** The description of the access policy. */
   description?: string;
@@ -64,9 +70,13 @@ export interface AccessPolicy {
   email: string;
   /** An auto generated unique id which identifies the access policy. */
   id: string;
+  /** Labels as key-value pairs. */
+  labels?: AccessPolicyLabelsMap;
   permissions: Permissions;
 }
 export type CreateAccessTokenRequestRegionId = "eu01" | "eu02";
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type CreateAccessTokenRequestLabelsMap = { [key: string]: string | undefined };
 export interface CreateAccessTokenRequest {
   /** The STACKIT portal project UUID the resource is located in. */
   projectId: string;
@@ -78,10 +88,14 @@ export interface CreateAccessTokenRequest {
   description?: string;
   /** The displayed name of the access token. */
   displayName: string;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: CreateAccessTokenRequestLabelsMap;
   /** A lifetime period for an access token in days. If unset the token will not expire. */
   lifetime?: number;
   permissions: Permissions;
 }
+/** Labels as key-value pairs. */
+export type AccessTokenLabelsMap = { [key: string]: string | undefined };
 export type AccessTokenStatus = "active" | "expired";
 export interface AccessToken {
   /** A generated access token. Only available on creation. */
@@ -96,6 +110,8 @@ export interface AccessToken {
   expires: boolean;
   /** An auto generated unique id which identifies the access token. */
   id: string;
+  /** Labels as key-value pairs. */
+  labels?: AccessTokenLabelsMap;
   permissions: Permissions;
   status: AccessTokenStatus;
   /** The date and time util an access token is valid to (inclusively). */
@@ -104,6 +120,8 @@ export interface AccessToken {
 export type CreateLogsInstanceRequestRegionId = "eu01" | "eu02";
 /** The access control list for the Logs instance. */
 export type CreateLogsInstanceRequestAclList = Array<string>;
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type CreateLogsInstanceRequestLabelsMap = { [key: string]: string | undefined };
 export interface CreateLogsInstanceRequest {
   /** The STACKIT portal project UUID the resource is located in. */
   projectId: string;
@@ -115,11 +133,15 @@ export interface CreateLogsInstanceRequest {
   description?: string;
   /** The displayed name to distinguish multiple Logs instances. */
   displayName: string;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: CreateLogsInstanceRequestLabelsMap;
   /** The log retention time in days. */
   retentionDays: number;
 }
 /** The access control list for the Logs instance. */
 export type LogsInstanceAclList = Array<string>;
+/** Labels as key-value pairs. */
+export type LogsInstanceLabelsMap = { [key: string]: string | undefined };
 /** The current status of the Logs instance. */
 export type LogsInstanceStatus = "active" | "deleting" | "reconciling";
 export interface LogsInstance {
@@ -139,6 +161,8 @@ export interface LogsInstance {
   ingestOtlpUrl?: string;
   /** The Logs instance's ingest logs URL */
   ingestUrl?: string;
+  /** Labels as key-value pairs. */
+  labels?: LogsInstanceLabelsMap;
   /** The Logs instance's query range URL */
   queryRangeUrl?: string;
   /** The Logs instance's query URL */
@@ -278,6 +302,8 @@ export interface LogsInstancesList {
   instances: LogsInstancesListInstancesList;
 }
 export type UpdateAccessPolicyRequestRegionId = "eu01" | "eu02";
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type UpdateAccessPolicyRequestLabelsMap = { [key: string]: string | undefined };
 export interface UpdateAccessPolicyRequest {
   /** The STACKIT portal project UUID the resource is located in. */
   projectId: string;
@@ -289,9 +315,13 @@ export interface UpdateAccessPolicyRequest {
   pId: string;
   /** The updated description of the access policy. If not present will be ignored in update. */
   description?: string | null;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: UpdateAccessPolicyRequestLabelsMap | null;
   permissions?: Permissions;
 }
 export type UpdateAccessTokenRequestRegionId = "eu01" | "eu02";
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type UpdateAccessTokenRequestLabelsMap = { [key: string]: string | undefined };
 export interface UpdateAccessTokenRequest {
   /** The STACKIT portal project UUID the resource is located in. */
   projectId: string;
@@ -305,11 +335,15 @@ export interface UpdateAccessTokenRequest {
   description?: string;
   /** The displayed name of the access token. */
   displayName?: string;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: UpdateAccessTokenRequestLabelsMap;
 }
 export interface UpdateAccessTokenResponse {}
 export type UpdateLogsInstanceRequestRegionId = "eu01" | "eu02";
 /** The access control list for the Logs instance. */
 export type UpdateLogsInstanceRequestAclList = Array<string>;
+/** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+export type UpdateLogsInstanceRequestLabelsMap = { [key: string]: string | undefined };
 export interface UpdateLogsInstanceRequest {
   /** The STACKIT portal project UUID the resource is located in. */
   projectId: string;
@@ -323,6 +357,8 @@ export interface UpdateLogsInstanceRequest {
   description?: string;
   /** The displayed name to distinguish multiple Logs instances. */
   displayName?: string;
+  /** Key-value pairs for resource labeling. Maximum 64 user labels per resource. Key format: - May contain an optional domain prefix separated by a slash (/). - Domain prefix must be <= 250 characters, a valid DNS subdomain containing only lowercase alphanumerics ([a-z0-9]) and dashes (-), separated by dots (.). - Key name (excluding prefix) must be between 1 and 63 characters, begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. - Reserved prefixes: 'stackit.cloud/' (including all subdomains) and deprecated 'stackit-' are reserved for system labels and cannot be created, updated, or deleted by end-users. Value format: - Length must be <= 63 characters. - May be empty. - If not empty, must begin and end with an alphanumeric character ([a-z0-9A-Z]), and may contain dashes (-), underscores (_), dots (.), and alphanumerics in between. */
+  labels?: UpdateLogsInstanceRequestLabelsMap;
   /** The log retention time in days. */
   retentionDays?: number;
 }
@@ -335,7 +371,7 @@ export const createAccessPolicy: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(44, __c11, 0) as any as S.Schema<CreateAccessPolicyRequest>,
-  output: __S(52, __c13, 0) as any as S.Schema<AccessPolicy>,
+  output: __S(56, __c14, 0) as any as S.Schema<AccessPolicy>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -349,8 +385,8 @@ export const createAccessToken: API.OperationMethod<
   CreateAccessTokenError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(56, __c14, 0) as any as S.Schema<CreateAccessTokenRequest>,
-  output: __S(60, __c15, 0) as any as S.Schema<AccessToken>,
+  input: __S(60, __c15, 0) as any as S.Schema<CreateAccessTokenRequest>,
+  output: __S(64, __c16, 0) as any as S.Schema<AccessToken>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -364,8 +400,8 @@ export const createLogsInstance: API.OperationMethod<
   CreateLogsInstanceError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(64, __c16, 0) as any as S.Schema<CreateLogsInstanceRequest>,
-  output: __S(69, __c17, 1) as any as S.Schema<LogsInstance>,
+  input: __S(68, __c17, 0) as any as S.Schema<CreateLogsInstanceRequest>,
+  output: __S(73, __c18, 1) as any as S.Schema<LogsInstance>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -379,8 +415,8 @@ export const deleteAccessPolicy: API.OperationMethod<
   DeleteAccessPolicyError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(72, __c18, 0) as any as S.Schema<DeleteAccessPolicyRequest>,
-  output: __S(76, __c19, 0) as any as S.Schema<DeleteAccessPolicyResponse>,
+  input: __S(76, __c19, 0) as any as S.Schema<DeleteAccessPolicyRequest>,
+  output: __S(80, __c20, 0) as any as S.Schema<DeleteAccessPolicyResponse>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -394,8 +430,8 @@ export const deleteAccessToken: API.OperationMethod<
   DeleteAccessTokenError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(80, __c20, 0) as any as S.Schema<DeleteAccessTokenRequest>,
-  output: __S(76, __c19, 0) as any as S.Schema<DeleteAccessTokenResponse>,
+  input: __S(84, __c21, 0) as any as S.Schema<DeleteAccessTokenRequest>,
+  output: __S(80, __c20, 0) as any as S.Schema<DeleteAccessTokenResponse>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -409,8 +445,8 @@ export const deleteAllAccessPolicies: API.OperationMethod<
   DeleteAllAccessPoliciesError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(84, __c21, 0) as any as S.Schema<DeleteAllAccessPoliciesRequest>,
-  output: __S(89, __c22, 1) as any as S.Schema<AccessPolicyList>,
+  input: __S(88, __c22, 0) as any as S.Schema<DeleteAllAccessPoliciesRequest>,
+  output: __S(93, __c23, 1) as any as S.Schema<AccessPolicyList>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -424,8 +460,8 @@ export const deleteAllAccessTokens: API.OperationMethod<
   DeleteAllAccessTokensError,
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: __S(92, __c23, 0) as any as S.Schema<DeleteAllAccessTokensRequest>,
-  output: __S(97, __c24, 1) as any as S.Schema<AccessTokenList>,
+  input: __S(96, __c24, 0) as any as S.Schema<DeleteAllAccessTokensRequest>,
+  output: __S(101, __c25, 1) as any as S.Schema<AccessTokenList>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -440,7 +476,7 @@ export const deleteAllExpiredAccessTokens: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(0, __c0, 0) as any as S.Schema<DeleteAllExpiredAccessTokensRequest>,
-  output: __S(97, __c24, 1) as any as S.Schema<AccessTokenList>,
+  output: __S(101, __c25, 1) as any as S.Schema<AccessTokenList>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -455,7 +491,7 @@ export const deleteLogsInstance: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(4, __c1, 0) as any as S.Schema<DeleteLogsInstanceRequest>,
-  output: __S(76, __c19, 0) as any as S.Schema<DeleteLogsInstanceResponse>,
+  output: __S(80, __c20, 0) as any as S.Schema<DeleteLogsInstanceResponse>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -470,7 +506,7 @@ export const getAccessPolicy: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(8, __c2, 0) as any as S.Schema<GetAccessPolicyRequest>,
-  output: __S(52, __c13, 0) as any as S.Schema<AccessPolicy>,
+  output: __S(56, __c14, 0) as any as S.Schema<AccessPolicy>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -485,7 +521,7 @@ export const getAccessToken: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(12, __c3, 0) as any as S.Schema<GetAccessTokenRequest>,
-  output: __S(60, __c15, 0) as any as S.Schema<AccessToken>,
+  output: __S(64, __c16, 0) as any as S.Schema<AccessToken>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -500,7 +536,7 @@ export const getLogsInstance: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(16, __c4, 0) as any as S.Schema<GetLogsInstanceRequest>,
-  output: __S(69, __c17, 1) as any as S.Schema<LogsInstance>,
+  output: __S(73, __c18, 1) as any as S.Schema<LogsInstance>,
   errors: [BadRequest, NotFound, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -515,7 +551,7 @@ export const listAccessPolicies: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(20, __c5, 0) as any as S.Schema<ListAccessPoliciesRequest>,
-  output: __S(89, __c22, 1) as any as S.Schema<AccessPolicyList>,
+  output: __S(93, __c23, 1) as any as S.Schema<AccessPolicyList>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -530,7 +566,7 @@ export const listAccessTokens: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(24, __c6, 0) as any as S.Schema<ListAccessTokensRequest>,
-  output: __S(97, __c24, 1) as any as S.Schema<AccessTokenList>,
+  output: __S(101, __c25, 1) as any as S.Schema<AccessTokenList>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -560,7 +596,7 @@ export const updateAccessPolicy: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(32, __c8, 0) as any as S.Schema<UpdateAccessPolicyRequest>,
-  output: __S(52, __c13, 0) as any as S.Schema<AccessPolicy>,
+  output: __S(56, __c14, 0) as any as S.Schema<AccessPolicy>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -575,7 +611,7 @@ export const updateAccessToken: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(36, __c9, 0) as any as S.Schema<UpdateAccessTokenRequest>,
-  output: __S(76, __c19, 0) as any as S.Schema<UpdateAccessTokenResponse>,
+  output: __S(80, __c20, 0) as any as S.Schema<UpdateAccessTokenResponse>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -590,7 +626,7 @@ export const updateLogsInstance: API.OperationMethod<
   StackitOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: __S(40, __c10, 0) as any as S.Schema<UpdateLogsInstanceRequest>,
-  output: __S(69, __c17, 1) as any as S.Schema<LogsInstance>,
+  output: __S(73, __c18, 1) as any as S.Schema<LogsInstance>,
   errors: [BadRequest, NotFound, Conflict, UnknownStackitError],
   protocol: StackitProtocol,
   retry: Retry.Retry,
@@ -749,7 +785,7 @@ function __c7(j: number): any {
         ),
       ).annotate({ identifier: "ListLogsInstancesRequest" });
     case 1:
-      return S.Array(__S(69, __c17, 1));
+      return S.Array(__S(73, __c18, 1));
     case 2:
       return S.suspend(() =>
         S.Struct({
@@ -768,7 +804,8 @@ function __c8(j: number): any {
           instanceId: S.String.pipe(T.Label()),
           pId: S.String.pipe(T.Label()),
           description: S.optional(S.NullOr(S.String)),
-          permissions: S.optional(__S(48, __c12, 0)),
+          labels: S.optional(S.NullOr(__S(48, __c12, 0))),
+          permissions: S.optional(__S(52, __c13, 0)),
         }).pipe(
           T.Http({
             method: "PATCH",
@@ -791,6 +828,7 @@ function __c9(j: number): any {
           tId: S.String.pipe(T.Label()),
           description: S.optional(S.String),
           displayName: S.optional(S.String),
+          labels: S.optional(__S(48, __c12, 0)),
         }).pipe(
           T.Http({
             method: "PUT",
@@ -810,9 +848,10 @@ function __c10(j: number): any {
           projectId: S.String.pipe(T.Label()),
           regionId: S.String.pipe(T.Label()),
           instanceId: S.String.pipe(T.Label()),
-          acl: S.optional(__S(68, __c17, 0)),
+          acl: S.optional(__S(72, __c18, 0)),
           description: S.optional(S.String),
           displayName: S.optional(S.String),
+          labels: S.optional(__S(48, __c12, 0)),
           retentionDays: S.optional(S.Number),
         }).pipe(
           T.Http({
@@ -835,7 +874,8 @@ function __c11(j: number): any {
           instanceId: S.String.pipe(T.Label()),
           description: S.optional(S.NullOr(S.String)),
           email: S.String,
-          permissions: __S(48, __c12, 0),
+          labels: S.optional(S.NullOr(__S(48, __c12, 0))),
+          permissions: __S(52, __c13, 0),
         }).pipe(
           T.Http({
             method: "POST",
@@ -850,10 +890,16 @@ function __c11(j: number): any {
 function __c12(j: number): any {
   switch (j) {
     case 0:
-      return S.Array(S.String);
+      return S.Record(S.String, S.String);
   }
 }
 function __c13(j: number): any {
+  switch (j) {
+    case 0:
+      return S.Array(S.String);
+  }
+}
+function __c14(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -861,12 +907,13 @@ function __c13(j: number): any {
           description: S.optional(S.String),
           email: S.String,
           id: S.String,
-          permissions: __S(48, __c12, 0),
+          labels: S.optional(__S(48, __c12, 0)),
+          permissions: __S(52, __c13, 0),
         }),
       ).annotate({ identifier: "AccessPolicy" });
   }
 }
-function __c14(j: number): any {
+function __c15(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -876,8 +923,9 @@ function __c14(j: number): any {
           instanceId: S.String.pipe(T.Label()),
           description: S.optional(S.String),
           displayName: S.String,
+          labels: S.optional(__S(48, __c12, 0)),
           lifetime: S.optional(S.Number),
-          permissions: __S(48, __c12, 0),
+          permissions: __S(52, __c13, 0),
         }).pipe(
           T.Http({
             method: "POST",
@@ -889,7 +937,7 @@ function __c14(j: number): any {
       ).annotate({ identifier: "CreateAccessTokenRequest" });
   }
 }
-function __c15(j: number): any {
+function __c16(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -900,23 +948,25 @@ function __c15(j: number): any {
           displayName: S.String,
           expires: S.Boolean,
           id: S.String,
-          permissions: __S(48, __c12, 0),
+          labels: S.optional(__S(48, __c12, 0)),
+          permissions: __S(52, __c13, 0),
           status: S.String,
           validUntil: S.optional(S.String),
         }),
       ).annotate({ identifier: "AccessToken" });
   }
 }
-function __c16(j: number): any {
+function __c17(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
         S.Struct({
           projectId: S.String.pipe(T.Label()),
           regionId: S.String.pipe(T.Label()),
-          acl: S.optional(__S(68, __c17, 0)),
+          acl: S.optional(__S(72, __c18, 0)),
           description: S.optional(S.String),
           displayName: S.String,
+          labels: S.optional(__S(48, __c12, 0)),
           retentionDays: S.Number,
         }).pipe(
           T.Http({
@@ -929,14 +979,14 @@ function __c16(j: number): any {
       ).annotate({ identifier: "CreateLogsInstanceRequest" });
   }
 }
-function __c17(j: number): any {
+function __c18(j: number): any {
   switch (j) {
     case 0:
       return S.Array(S.String);
     case 1:
       return S.suspend(() =>
         S.Struct({
-          acl: S.optional(__S(68, __c17, 0)),
+          acl: S.optional(__S(72, __c18, 0)),
           created: S.String,
           datasourceUrl: S.optional(S.String),
           description: S.optional(S.String),
@@ -944,6 +994,7 @@ function __c17(j: number): any {
           id: S.String,
           ingestOtlpUrl: S.optional(S.String),
           ingestUrl: S.optional(S.String),
+          labels: S.optional(__S(48, __c12, 0)),
           queryRangeUrl: S.optional(S.String),
           queryUrl: S.optional(S.String),
           retentionDays: S.Number,
@@ -952,7 +1003,7 @@ function __c17(j: number): any {
       ).annotate({ identifier: "LogsInstance" });
   }
 }
-function __c18(j: number): any {
+function __c19(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -972,13 +1023,13 @@ function __c18(j: number): any {
       ).annotate({ identifier: "DeleteAccessPolicyRequest" });
   }
 }
-function __c19(j: number): any {
+function __c20(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() => S.Struct({})).annotate({ identifier: "DeleteAccessPolicyResponse" });
   }
 }
-function __c20(j: number): any {
+function __c21(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -998,7 +1049,7 @@ function __c20(j: number): any {
       ).annotate({ identifier: "DeleteAccessTokenRequest" });
   }
 }
-function __c21(j: number): any {
+function __c22(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -1017,19 +1068,19 @@ function __c21(j: number): any {
       ).annotate({ identifier: "DeleteAllAccessPoliciesRequest" });
   }
 }
-function __c22(j: number): any {
+function __c23(j: number): any {
   switch (j) {
     case 0:
-      return S.Array(__S(52, __c13, 0));
+      return S.Array(__S(56, __c14, 0));
     case 1:
       return S.suspend(() =>
         S.Struct({
-          policies: __S(88, __c22, 0),
+          policies: __S(92, __c23, 0),
         }),
       ).annotate({ identifier: "AccessPolicyList" });
   }
 }
-function __c23(j: number): any {
+function __c24(j: number): any {
   switch (j) {
     case 0:
       return S.suspend(() =>
@@ -1048,14 +1099,14 @@ function __c23(j: number): any {
       ).annotate({ identifier: "DeleteAllAccessTokensRequest" });
   }
 }
-function __c24(j: number): any {
+function __c25(j: number): any {
   switch (j) {
     case 0:
-      return S.Array(__S(60, __c15, 0));
+      return S.Array(__S(64, __c16, 0));
     case 1:
       return S.suspend(() =>
         S.Struct({
-          tokens: __S(96, __c24, 0),
+          tokens: __S(100, __c25, 0),
         }),
       ).annotate({ identifier: "AccessTokenList" });
   }

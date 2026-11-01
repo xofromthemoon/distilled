@@ -111,7 +111,7 @@
           "target": "com.stackit.registry#Proxy"
         },
         "state": {
-          "target": "smithy.api#String",
+          "target": "com.stackit.registry#ArtifactoryState",
           "traits": {
             "smithy.api#documentation": "The current state of the STACKIT Artifactory.",
             "smithy.api#required": {}
@@ -121,13 +121,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The base URL of the STACKIT Artifactory.",
-            "smithy.api#required": {}
-          }
-        },
-        "user_count": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "How many users does this artifactory have. Read Only.",
             "smithy.api#required": {}
           }
         }
@@ -171,11 +164,46 @@
       "type": "structure",
       "members": {
         "access_key": {
-          "target": "smithy.api#String"
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Credentials for upstream registry, redacted"
+      }
+    },
+    "com.stackit.registry#ArtifactoryState": {
+      "type": "enum",
+      "members": {
+        "RECONCILING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reconciling"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the STACKIT Artifactory."
       }
     },
     "com.stackit.registry#ArtifactoryListArtifactoriesList": {
@@ -246,11 +274,15 @@
       "type": "structure",
       "members": {
         "access_key": {
-          "target": "smithy.api#String"
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
         "access_secret": {
           "target": "smithy.api#String",
           "traits": {
+            "smithy.api#required": {},
             "smithy.api#sensitive": {}
           }
         }
@@ -544,7 +576,7 @@
           "code": 200,
           "baseUrl": "https://registry.api.stackit.cloud"
         },
-        "smithy.api#documentation": "Soft delete the artifactory.\n\nDeletes the artifactory associated to the specified project."
+        "smithy.api#documentation": "Delete the artifactory.\n\nDeletes the artifactory associated to the specified project."
       }
     },
     "com.stackit.registry#ListReplicationAdaptersRequest": {
@@ -594,6 +626,13 @@
     "com.stackit.registry#ReplicationAdapter": {
       "type": "structure",
       "members": {
+        "credential_type": {
+          "target": "com.stackit.registry#ReplicationAdapterCredentialType",
+          "traits": {
+            "smithy.api#documentation": "User-hint for what type of credentials are expected for replication\nadapter type. Values are one of `basic` for username/password, `oauth`\nfor token based access, and `secret` for json-secret file.\n",
+            "smithy.api#required": {}
+          }
+        },
         "display_name": {
           "target": "smithy.api#String",
           "traits": {
@@ -610,6 +649,32 @@
         }
       },
       "traits": {}
+    },
+    "com.stackit.registry#ReplicationAdapterCredentialType": {
+      "type": "enum",
+      "members": {
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basic"
+          }
+        },
+        "OAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oauth"
+          }
+        },
+        "SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "secret"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User-hint for what type of credentials are expected for replication\nadapter type. Values are one of `basic` for username/password, `oauth`\nfor token based access, and `secret` for json-secret file.\n"
+      }
     },
     "com.stackit.registry#ReplicationAdapterListReplicationAdaptersList": {
       "type": "list",

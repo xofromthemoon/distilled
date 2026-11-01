@@ -108,6 +108,12 @@
             "smithy.api#documentation": "The description is a longer text chosen by the user to provide more context for the resource."
           }
         },
+        "destinationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of destinations configured for the telemetry router."
+          }
+        },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
@@ -124,6 +130,9 @@
             "smithy.api#documentation": "A auto generated unique id which identifies the resource.",
             "smithy.api#required": {}
           }
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_router#ResourceLabels"
         },
         "status": {
           "target": "com.stackit.telemetry_router#TelemetryRouterResponseStatus",
@@ -243,6 +252,16 @@
       },
       "traits": {}
     },
+    "com.stackit.telemetry_router#ResourceLabels": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
     "com.stackit.telemetry_router#TelemetryRouterResponseStatus": {
       "type": "enum",
       "members": {
@@ -351,6 +370,9 @@
         },
         "filter": {
           "target": "com.stackit.telemetry_router#ConfigFilter"
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_router#ResourceLabels"
         }
       },
       "traits": {
@@ -518,6 +540,9 @@
         },
         "filter": {
           "target": "com.stackit.telemetry_router#ConfigFilter"
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_router#ResourceLabels"
         }
       },
       "traits": {
@@ -551,6 +576,103 @@
           "baseUrl": "https://telemetry-router.api.stackit.cloud"
         },
         "smithy.api#documentation": "Updates the given Telemetry Router."
+      }
+    },
+    "com.stackit.telemetry_router#PartialUpdateTelemetryRouterRequestRegionId": {
+      "type": "enum",
+      "members": {
+        "EU01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu01"
+          }
+        },
+        "EU02": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu02"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.telemetry_router#PartialUpdateTelemetryRouterRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The STACKIT portal project UUID the resource is located in."
+          }
+        },
+        "regionId": {
+          "target": "com.stackit.telemetry_router#PartialUpdateTelemetryRouterRequestRegionId",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The STACKIT region name the resource is located in."
+          }
+        },
+        "telemetryRouterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Telemetry Router UUID."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description is a longer text chosen by the user to provide more context for the resource."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name is a short name chosen by the user to identify the resource."
+          }
+        },
+        "filter": {
+          "target": "com.stackit.telemetry_router#ConfigFilter"
+        },
+        "resourceLabels": {
+          "target": "com.stackit.telemetry_router#ResourceLabels"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.telemetry_router#PartialUpdateTelemetryRouter": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.telemetry_router#PartialUpdateTelemetryRouterRequest"
+      },
+      "output": {
+        "target": "com.stackit.telemetry_router#TelemetryRouterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.telemetry_router#BadRequest"
+        },
+        {
+          "target": "com.stackit.telemetry_router#NotFound"
+        },
+        {
+          "target": "com.stackit.telemetry_router#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/projects/{projectId}/regions/{regionId}/telemetry-routers/{telemetryRouterId}",
+          "code": 200,
+          "baseUrl": "https://telemetry-router.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "Patches the given Telemetry Router."
       }
     },
     "com.stackit.telemetry_router#DeleteTelemetryRouterRequestRegionId": {
@@ -2189,6 +2311,9 @@
         },
         {
           "target": "com.stackit.telemetry_router#UpdateTelemetryRouter"
+        },
+        {
+          "target": "com.stackit.telemetry_router#PartialUpdateTelemetryRouter"
         },
         {
           "target": "com.stackit.telemetry_router#DeleteTelemetryRouter"

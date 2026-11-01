@@ -95,7 +95,13 @@ export interface DestinationCIDRv6 {
   /** An CIDRv6 string. */
   value: string;
 }
-export type RouteInputDestination = DestinationCIDRv4 | DestinationCIDRv6;
+export type DestinationPrefixListType = "prefixlist";
+/** Prefix List destination reference object. */
+export interface DestinationPrefixList {
+  type: DestinationPrefixListType;
+  value: string;
+}
+export type RouteInputDestination = DestinationCIDRv4 | DestinationCIDRv6 | DestinationPrefixList;
 export type NexthopIPv4Type = "ipv4";
 /** Object that represents an IPv4 address. */
 export interface NexthopIPv4 {
@@ -140,7 +146,7 @@ export interface AddRoutesToRoutingTableRequest {
   routingTableId: string;
   items: RouteListInput;
 }
-export type RouteDestination = DestinationCIDRv4 | DestinationCIDRv6;
+export type RouteDestination = DestinationCIDRv4 | DestinationCIDRv6 | DestinationPrefixList;
 export type RouteNexthop = NexthopIPv4 | NexthopIPv6 | NexthopInternet | NexthopBlackhole;
 /** Object represents a network route. */
 export interface Route {
@@ -549,6 +555,7 @@ export interface CreateNicRequest {
 /** Object that represents a network interface. */
 export interface NIC {
   allowedAddresses?: AllowedAddresses;
+  createdAt?: string;
   description?: string;
   device?: string;
   id?: string;
@@ -564,6 +571,7 @@ export interface NIC {
   status?: string;
   /** Possible values: `server`, `metadata`, `gateway`, `none`. */
   type?: string;
+  updatedAt?: string;
 }
 export interface CreatePublicIPRequest {
   /** The identifier (ID) of a STACKIT Project. */
@@ -576,11 +584,13 @@ export interface CreatePublicIPRequest {
 }
 /** Object that represents a public IP. */
 export interface PublicIp {
+  createdAt?: string;
   id?: string;
   ip?: string;
   labels?: unknown;
   /** Associate the public IP with a network interface (ID). */
   networkInterface?: string | null;
+  updatedAt?: string;
 }
 export interface CreateSecurityGroupRequest {
   /** The identifier (ID) of a STACKIT Project. */
@@ -685,8 +695,10 @@ export interface CreateSecurityGroupRuleResponse {
 }
 /** STACKIT server agent options for a server. */
 export interface ServerAgent {
-  /** Configure the STACKIT server agent provisioning during the first boot of the server. Only works when booting from an images that supports the STACKIT server agent. When `false` the agent IS NOT installed. When `true` the agent IS installed. When its not set the result depend on the used image and its default provisioning setting. */
+  /** Configure the STACKIT server agent provisioning during the first boot of the server. When `false`, the agent is not installed. When `true`, the agent is installed. Setting it to `true` when booting from an image requires an image that supports the agent; otherwise, the request is rejected. If omitted when booting from an image, the image default (`provisionByDefault`) applies. */
   provisioned?: boolean;
+  /** Configuration property that controls whether active virtual machine monitoring is enabled for a server instance. When `true` it allows the platform to collect metrics, monitor system health, and track guest-level performance on the VM. It operates as a dependent option - meaning `vmMonitoring` cannot be active unless the main server agent is also enabled. */
+  vmMonitoring?: boolean;
 }
 /** The source object of a boot volume. */
 export type BootVolumeSource = BackupSource;
@@ -760,6 +772,7 @@ export type ServerOutputNetworking = CreateServerNetworking | CreateServerNetwor
 /** Describes the object that matches servers to its networks. */
 export interface ServerNetwork {
   allowedAddresses?: AllowedAddresses;
+  createdAt?: string;
   ipv4?: string;
   ipv6?: string;
   mac: string;
@@ -770,6 +783,7 @@ export interface ServerNetwork {
   nicSecurity: boolean;
   publicIp?: string;
   securityGroups?: UUIDList;
+  updatedAt?: string;
 }
 /** A list of networks attached to a server. */
 export type ServerNICList = Array<ServerNetwork>;
@@ -824,6 +838,7 @@ export interface Snapshot {
   availabilityZone?: string;
   createdAt?: string;
   description?: string;
+  encrypted?: boolean;
   id?: string;
   labels?: unknown;
   name?: string;
@@ -5774,6 +5789,7 @@ function __c69(j: number): any {
       return S.suspend(() =>
         S.Struct({
           allowedAddresses: S.optional(__S(8, __c1, 0)),
+          createdAt: S.optional(S.String),
           description: S.optional(S.String),
           device: S.optional(S.String),
           id: S.optional(S.String),
@@ -5787,6 +5803,7 @@ function __c69(j: number): any {
           securityGroups: S.optional(__S(8, __c1, 0)),
           status: S.optional(S.String),
           type: S.optional(S.String),
+          updatedAt: S.optional(S.String),
         }),
       ).annotate({ identifier: "NIC" });
   }
@@ -5816,10 +5833,12 @@ function __c71(j: number): any {
     case 0:
       return S.suspend(() =>
         S.Struct({
+          createdAt: S.optional(S.String),
           id: S.optional(S.String),
           ip: S.optional(S.String),
           labels: S.optional(S.Unknown),
           networkInterface: S.optional(S.NullOr(S.String)),
+          updatedAt: S.optional(S.String),
         }),
       ).annotate({ identifier: "PublicIp" });
   }
@@ -5987,6 +6006,7 @@ function __c78(j: number): any {
       return S.suspend(() =>
         S.Struct({
           provisioned: S.optional(S.Boolean),
+          vmMonitoring: S.optional(S.Boolean),
         }),
       ).annotate({ identifier: "ServerAgent" });
     case 1:
@@ -6009,6 +6029,7 @@ function __c78(j: number): any {
       return S.suspend(() =>
         S.Struct({
           allowedAddresses: S.optional(__S(8, __c1, 0)),
+          createdAt: S.optional(S.String),
           ipv4: S.optional(S.String),
           ipv6: S.optional(S.String),
           mac: S.String,
@@ -6018,6 +6039,7 @@ function __c78(j: number): any {
           nicSecurity: S.Boolean,
           publicIp: S.optional(S.String),
           securityGroups: S.optional(__S(8, __c1, 0)),
+          updatedAt: S.optional(S.String),
         }),
       ).annotate({ identifier: "ServerNetwork" });
     case 4:
@@ -6083,6 +6105,7 @@ function __c80(j: number): any {
           availabilityZone: S.optional(S.String),
           createdAt: S.optional(S.String),
           description: S.optional(S.String),
+          encrypted: S.optional(S.Boolean),
           id: S.optional(S.String),
           labels: S.optional(S.Unknown),
           name: S.optional(S.String),

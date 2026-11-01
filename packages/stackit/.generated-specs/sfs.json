@@ -388,6 +388,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -575,6 +578,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -642,6 +648,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -1003,6 +1012,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -1455,6 +1467,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -1685,6 +1700,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -1900,6 +1918,9 @@
       "errors": [
         {
           "target": "com.stackit.sfs#BadRequest"
+        },
+        {
+          "target": "com.stackit.sfs#Conflict"
         }
       ],
       "traits": {
@@ -2537,6 +2558,11 @@
       "output": {
         "target": "com.stackit.sfs#EnableLockResponse"
       },
+      "errors": [
+        {
+          "target": "com.stackit.sfs#Conflict"
+        }
+      ],
       "traits": {
         "smithy.api#http": {
           "method": "POST",
@@ -2592,6 +2618,11 @@
       "output": {
         "target": "com.stackit.sfs#DisableLockResponse2"
       },
+      "errors": [
+        {
+          "target": "com.stackit.sfs#Conflict"
+        }
+      ],
       "traits": {
         "smithy.api#http": {
           "method": "DELETE",
@@ -2679,6 +2710,19 @@
         "com.distilled.openapi#errorMatchers": [
           {
             "status": 400
+          }
+        ]
+      }
+    },
+    "com.stackit.sfs#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
           }
         ]
       }

@@ -90,6 +90,12 @@
         "instanceId": {
           "target": "smithy.api#String"
         },
+        "instanceStatus": {
+          "target": "com.stackit.valkey#InstanceInstanceStatus",
+          "traits": {
+            "smithy.api#documentation": "Current state of a service instance"
+          }
+        },
         "lastOperation": {
           "target": "com.stackit.valkey#InstanceLastOperation",
           "traits": {
@@ -133,10 +139,63 @@
           }
         },
         "status": {
-          "target": "com.stackit.valkey#InstanceStatus"
+          "target": "com.stackit.valkey#InstanceStatus",
+          "traits": {
+            "smithy.api#documentation": "State of the last operation and this instance"
+          }
         }
       },
       "traits": {}
+    },
+    "com.stackit.valkey#InstanceInstanceStatus": {
+      "type": "enum",
+      "members": {
+        "PROVISIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provisioned"
+          }
+        },
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deploying"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of a service instance"
+      }
     },
     "com.stackit.valkey#InstanceLastOperation": {
       "type": "structure",
@@ -250,7 +309,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "State of the last operation and this instance"
+      }
     },
     "com.stackit.valkey#ListInstancesResponseInstancesList": {
       "type": "list",
@@ -1936,6 +1997,229 @@
         "smithy.api#documentation": "get latest restore information for provided instanceId"
       }
     },
+    "com.stackit.valkey#GetUpdatesRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.valkey#GetUpdatesResponse": {
+      "type": "structure",
+      "members": {
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automatic updates are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "availableUpdates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of available update components.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.valkey#GetUpdates": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.valkey#GetUpdatesRequest"
+      },
+      "output": {
+        "target": "com.stackit.valkey#GetUpdatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.valkey#BadRequest"
+        },
+        {
+          "target": "com.stackit.valkey#NotFound"
+        },
+        {
+          "target": "com.stackit.valkey#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates",
+          "code": 200,
+          "baseUrl": "https://valkey.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "get update settings\n\nReturns whether automatic updates are enabled and the number of available updates."
+      }
+    },
+    "com.stackit.valkey#UpdateUpdatesSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        },
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable automatic updates or false to disable them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.valkey#UpdateUpdatesSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "automaticUpdatesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automatic updates are allowed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.stackit.valkey#UpdateUpdatesSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.valkey#UpdateUpdatesSettingsRequest"
+      },
+      "output": {
+        "target": "com.stackit.valkey#UpdateUpdatesSettingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.valkey#BadRequest"
+        },
+        {
+          "target": "com.stackit.valkey#NotFound"
+        },
+        {
+          "target": "com.stackit.valkey#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates",
+          "code": 200,
+          "baseUrl": "https://valkey.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "update update settings\n\nEnables or disables automatic updates. The platform operator must allow changing this setting."
+      }
+    },
+    "com.stackit.valkey#TriggerUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project id on which user has permissions"
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "region in which the project resides"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.stackit.valkey#TriggerUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.stackit.valkey#TriggerUpdateRequest"
+      },
+      "output": {
+        "target": "com.stackit.valkey#CreateInstanceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.stackit.valkey#BadRequest"
+        },
+        {
+          "target": "com.stackit.valkey#NotFound"
+        },
+        {
+          "target": "com.stackit.valkey#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/projects/{projectId}/regions/{regionId}/instances/{instanceId}/updates/start",
+          "code": 200,
+          "baseUrl": "https://valkey.api.stackit.cloud"
+        },
+        "smithy.api#documentation": "start updates\n\nStarts all available updates asynchronously using the instance's service offering. No request body is required."
+      }
+    },
     "com.stackit.valkey#ListOfferingsRequest": {
       "type": "structure",
       "members": {
@@ -2179,7 +2463,7 @@
     },
     "com.stackit.valkey#Valkey": {
       "type": "service",
-      "version": "2.1",
+      "version": "2.1.1",
       "operations": [
         {
           "target": "com.stackit.valkey#ListInstances"
@@ -2234,6 +2518,15 @@
         },
         {
           "target": "com.stackit.valkey#ListRestores"
+        },
+        {
+          "target": "com.stackit.valkey#GetUpdates"
+        },
+        {
+          "target": "com.stackit.valkey#UpdateUpdatesSettings"
+        },
+        {
+          "target": "com.stackit.valkey#TriggerUpdate"
         },
         {
           "target": "com.stackit.valkey#ListOfferings"
